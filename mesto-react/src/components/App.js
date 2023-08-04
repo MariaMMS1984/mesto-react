@@ -14,7 +14,7 @@ function App() {
   const [userAvatar, setUserAvatar] = React.useState('');
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
@@ -81,11 +81,11 @@ function App() {
         />
 
 
-        <div className="popup deletepopup">
+        <div className="popup popup_type_delete">
           <div className="popup__content">
             <button className="popup__close-button" type="button"></button>
             <h2 className="popup__title">Вы уверены?</h2>
-            <form className="popup__container deletepopup__container" name="deletecard" noValidate>
+            <form className="popup__container popup_type_delete__container" name="deletecard" noValidate>
               <button className="popup__save-button" type="submit">
                 Да
               </button>
