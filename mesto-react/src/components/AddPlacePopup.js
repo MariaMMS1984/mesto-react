@@ -2,11 +2,31 @@ import React from 'react';
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
+    const [name, setName] = React.useState('');
+    const [link, setLink] = React.useState('');
+
+    function handleChangePlace(event) {
+        setName(event.target.value);
+    }
+
+    function handleChangeLink(event) {
+        setLink(event.target.value);
+    }
 
     function handleSubmit(event) {
         // Запрещаем браузеру переходить по адресу формы
         event.preventDefault();
+
+        // Передаём значения управляемых компонентов во внешний обработчик
+        props.onAddPlace({
+            name,
+            link
+        })
+
+        setName('');
+        setLink('');
     }
+
 
     return (
         <PopupWithForm
@@ -20,6 +40,8 @@ function AddPlacePopup(props) {
         >
 
             <input
+                onChange={handleChangePlace}
+                value={name}
                 type="text"
                 name="cardname"
                 id="cardpopup__input-name"
@@ -35,6 +57,8 @@ function AddPlacePopup(props) {
             </span>
 
             <input
+                onChange={handleChangeLink}
+                value={link}
                 type="url"
                 name="link"
                 id="cardurl"

@@ -27,7 +27,10 @@ class Api {
         return fetch(`${this._link}cards`, {
             headers: this._headers,
             method: 'POST',
-            body: JSON.stringify({ name, link })
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
         })
             .then(res => { return this._answerServer(res); })
     }
@@ -48,11 +51,11 @@ class Api {
             .then(res => { return this._answerServer(res); })
     }
 
-    sendUserData(profileData) {
+    sendUserData({ name, about }) {
         return fetch(`${this._link}users/me`, {
             headers: this._headers,
             method: 'PATCH',
-            body: JSON.stringify({ name: profileData.profilename, about: profileData.profession })
+            body: JSON.stringify({ name, about })
         })
             .then(res => { return this._answerServer(res); })
     }
@@ -80,6 +83,14 @@ class Api {
             method: 'DELETE',
         })
             .then(res => { return this._answerServer(res); })
+    }
+
+    toggleLike(cardId, isLiked) {
+        if (isLiked) {
+            return this.deleteCardLike(cardId);
+        } else {
+            return this.putCardLike(cardId);
+        }
     }
 }
 
