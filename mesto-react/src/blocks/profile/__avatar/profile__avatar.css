@@ -6,6 +6,7 @@
     transition: all .4s;
     z-index: 0;
     border-radius: 50%;
+    background-size: cover;
 }
 
 @media screen and (max-width: 660px) {
